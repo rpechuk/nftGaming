@@ -1,29 +1,43 @@
-import { Parallax } from 'rc-scroll-anim';
-import React, ReactDOM, { Component } from 'react';
+import Button from 'antd/lib/button';
+import QueueAnim from 'rc-queue-anim';
+import React, { Component } from 'react';
 
-class Demo extends Component {
+class Demo extends Component{
+  state = {
+    show: true
+  };
+  onClick = () => {
+    this.setState({
+      show: !this.state.show
+    });
+  }
   render() {
     return (
-      <div >
-        <Parallax
-          animation={{ x: 0 }}
-          style={{ transform: 'translateX(-100px)', margin: '10px auto' }}
-          className="code-box-shape"
-        />
-        <Parallax
-          animation={{ scale: 1 }}
-          style={{ transform: 'scale(0)', margin: '10px auto' }}
-          className="code-box-shape"
-        />
-        <Parallax
-          animation={{ rotate: 360 }}
-          style={{ margin: '10px auto' }}
-          className="code-box-shape"
-        />
+      <div className="queue-demo">
+        <p className="buttons">
+          <Button type="primary" onClick={this.onClick}>Switch</Button>
+        </p>
+        <QueueAnim className="demo-content">
+          {this.state.show ? [
+            <div className="demo-thead" key="a">
+              <ul>
+                <li />
+                <li />
+                <li />
+              </ul>
+            </div>,
+            <div className="demo-tbody" key="b">
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+          ] : null}
+        </QueueAnim>
       </div>
     );
   }
-}
-ReactDOM.render(<Demo/>, mountNode);
+};
 
 export default Demo;
