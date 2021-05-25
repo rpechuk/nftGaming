@@ -2,6 +2,9 @@ import Button from 'antd/lib/button';
 import QueueAnim from 'rc-queue-anim';
 import React, { Component } from 'react';
 
+var ScrollAnim = require('rc-scroll-anim');
+var ScrollParallax = ScrollAnim.Parallax;
+
 class Demo extends Component{
   state = {
     show: true
@@ -35,6 +38,8 @@ class Demo extends Component{
             </div>
           ] : null}
         </QueueAnim>
+
+        <ScrollParallax animation={{x:100}}>Parallax</ScrollParallax>
       </div>
     );
   }
